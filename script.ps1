@@ -126,6 +126,42 @@ if (($type -eq "ITEM") -or ($type -eq "BLOCK") -or ($type -eq "TOOL")) {
     #Add contenue file
     ADD-content -path $link_B -value $itemJSON_B
 
+                                   ### FILE LOOT
+
+    #url de création
+    $link_l = $path +"src\main\resources\data\"+$modid+"\loot_tables\block\"+ $name + ".json"
+
+    #Create File
+    Out-File $link_l
+
+    #Line "Name"
+    $tempName_l = $modid + ":" + $name
+
+    #JSONContenu
+    $itemJSON_l = @"
+ {
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "$tempName_l"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
+"@
+    #Add contenue file
+    ADD-content -path $link_l -value $itemJSON_l
+
   }
 
 

@@ -30,7 +30,7 @@ if (($type -eq "ITEM") -or ($type -eq "BLOCK") -or ($type -eq "TOOL")) {
     $link = $path +"src\main\resources\assets\"+$modid+"\models\item\"+ $name + ".json"
 
     #Create File
-    Out-File $link
+    #Out-File $link
 
     #Line "Layer0"
     $tempLayer = $modid + ":item/" + $name
@@ -52,8 +52,12 @@ if (($type -eq "ITEM") -or ($type -eq "BLOCK") -or ($type -eq "TOOL")) {
 }
 "@
 
+
+
+    $MyJsonObject = $itemJSON | ConvertFrom-Json
+    $MyJsonObject | ConvertTo-Json | Out-File $link
     #Add contenue file
-    ADD-content -path $link -value $itemJSON
+    #ADD-content -path $link -value $itemJSON
 
   }
 
